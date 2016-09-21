@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Messages - Lokalizoo REST API
+    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Source+Code+Pro">
+    <link rel="stylesheet" href="../css/main.css">
+  </head>
+  <body class="article-detail">
+    <header class="header">
+      <div class="content-wrap">
+        <h1>Messages</h1>
+      </div>
+    </header>
+    <div id="content">
+      <div class="content-wrap">
+        <article class="article">
+          <section class="content"><ul>
+<li><code>id</code> -&nbsp;<span class="caps">ID</span></li>
+<li><code>href</code> - Canonical&nbsp;<span class="caps">URL</span></li>
+<li><code>author</code> - <a href="/links.html">Linked</a> <a href="/api/users.html">user</a> object - author of the&nbsp;message</li>
+<li><code>group</code> - <a href="/links.html">Linked</a> target <a href="/api/groups.html">group</a>&nbsp;object</li>
+<li><code>content</code> - Message’s text&nbsp;content</li>
+<li><code>timestamp</code> - Time when the message was&nbsp;posted</li>
+</ul>
+<hr>
+<h1 id="get-groups-gid-messages-"><span class="caps">GET</span> <code>/groups/{gid}/messages</code></h1>
+<p>Returns an array of messages posted to the group <code>{gid}</code>.</p>
+<h4 id="scopes">Scopes</h4>
+<p>Requires <code>chat</code> scope to access messages posted to resource owner’s&nbsp;groups.</p>
+<h4 id="query-parameters">Query&nbsp;parameters</h4>
+<p>Exactly one is&nbsp;required</p>
+<ul>
+<li><code>timestamp</code> - Order and limit by timestamp (See <a href="/ranges.html">specyfying ranges</a>)</li>
+</ul>
+<h4 id="example-request">Example&nbsp;request</h4>
+<pre><code class="lang-http"><span class="keyword"><span class="caps">GET</span></span> <span class="string">/groups/12345/messages?timestamp=..2017-01-01T00:00.00Z</span>  <span class="string"><span class="caps">HTTP</span>/1.1
+Host:</span> api.lokalizoo.pl
+<span class="attribute">Authorization</span>: Bearer AccEss_t0kEn
+</code></pre>
+<h4 id="example-response">Example&nbsp;response</h4>
+<pre><code class="lang-http">HTTP/1.1 <span class="number">200</span> <span class="caps">OK</span>
+<span class="attribute">Content-Type</span>: application/json; charset=utf-8
+
+<span class="json">[
+  {
+    <span class="attr">"id"</span>: <span class="number">56453</span>,
+    <span class="attr">"href"</span>: <span class="string">"/groups/12345/messages/56453"</span>,
+    <span class="attr">"author"</span>: {<span class="attr">"href"</span>: <span class="string">"/users/453453"</span>},
+    <span class="attr">"content"</span>: <span class="string">"Hello!"</span>,
+    <span class="attr">"timestamp"</span>: <span class="string">"2016-09-19T14:53:12Z"</span>
+  },
+  {
+    <span class="attr">"id"</span>: <span class="number">56455</span>,
+    <span class="attr">"href"</span>: <span class="string">"/groups/12345/messages/56455"</span>,
+    <span class="attr">"author"</span>: {<span class="attr">"href"</span>: <span class="string">"/users/443678"</span>},
+    <span class="attr">"content"</span>: <span class="string">"What's up?"</span>,
+    <span class="attr">"timestamp"</span>: <span class="string">"2016-09-19T14:52:32Z"</span>
+  },
+  …
+]</span>
+</code></pre>
+<hr>
+<h1 id="post-groups-gid-messages-"><span class="caps">POST</span> <code>/groups/{gid}/messages</code></h1>
+<p>Sends a message to&nbsp;group.</p>
+<h4 id="scopes">Scopes</h4>
+<p>Requires <code>chat</code> scope to send messages to resource owner’s&nbsp;groups.</p>
+<h4 id="example-request">Example&nbsp;request</h4>
+<pre><code class="lang-http"><span class="keyword"><span class="caps">POST</span></span> <span class="string">/groups/12345/messages</span> <span class="caps">HTTP</span>/1.1
+<span class="attribute">Host</span>: api.lokalizoo.pl
+<span class="attribute">Authorization</span>: Bearer AccEss_t0kEn
+<span class="attribute">Content-Type</span>: application/json
+
+<span class="json">{
+  <span class="attr">"content"</span>: <span class="string">"Hello!"</span>
+}</span>
+</code></pre>
+<hr>
+<h1 id="subscribing">Subscribing</h1>
+<p>Message collections can be <a href="/subscribing.html">subscribed to</a>.</p>
+</section>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="content-wrap">
+        <div class="nav"><a href="/">&laquo; Index</a></div>
+        <section class="copy">
+          <p>&copy; 2016 Lokalizoo &mdash; powered by&nbsp;<a href="https://github.com/jnordberg/wintersmith">Wintersmith</a>
+          </p>
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>

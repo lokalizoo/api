@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Memberships - Lokalizoo REST API
+    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Source+Code+Pro">
+    <link rel="stylesheet" href="../css/main.css">
+  </head>
+  <body class="article-detail">
+    <header class="header">
+      <div class="content-wrap">
+        <h1>Memberships</h1>
+      </div>
+    </header>
+    <div id="content">
+      <div class="content-wrap">
+        <article class="article">
+          <section class="content"><ul>
+<li><code>id</code> -&nbsp;<span class="caps">ID</span></li>
+<li><code>href</code> - Canonical&nbsp;<span class="caps">URL</span></li>
+<li><code>user</code> - <a href="/links.html">Linked</a> <a href="/api/users.html">user</a>&nbsp;object</li>
+<li><code>group</code> - <a href="/links.html">Linked</a> <a href="/api/groups.html">group</a>&nbsp;object</li>
+</ul>
+<hr>
+<h1 id="get-memberships-"><span class="caps">GET</span> <code>/memberships</code></h1>
+<p>Returns an array of&nbsp;memberships.</p>
+<h4 id="scopes">Scopes</h4>
+<p>Requires <code>groups</code> scope to access data about resource owner’s memberships or any of the user’s friends’&nbsp;memberships.</p>
+<h4 id="query-parameters">Query&nbsp;parameters</h4>
+<p>Exactly one is&nbsp;required</p>
+<ul>
+<li><code>user</code> - Query user’s&nbsp;groups</li>
+<li><code>group</code> - Query group’s&nbsp;members</li>
+</ul>
+<h4 id="example-request">Example&nbsp;request</h4>
+<pre><code class="lang-http"><span class="keyword"><span class="caps">GET</span></span> <span class="string">/memberships?user=453453</span> <span class="caps">HTTP</span>/1.1
+<span class="attribute">Host</span>: api.lokalizoo.pl
+<span class="attribute">Authorization</span>: Bearer AccEss_t0kEn
+<span class="attribute">Content-Type</span>: application/json
+</code></pre>
+<h4 id="example-response">Example&nbsp;response</h4>
+<pre><code class="lang-http">HTTP/1.1 <span class="number">200</span> <span class="caps">OK</span>
+<span class="attribute">Content-Type</span>: application/json; charset=utf-8
+
+<span class="json">[
+  {
+    <span class="attr">"id"</span>: <span class="number">56453</span>,
+    <span class="attr">"group"</span>: {<span class="attr">"href"</span>: <span class="string">"/groups/54362"</span>},
+    <span class="attr">"user"</span>: {<span class="attr">"href"</span>: <span class="string">"/users/453453"</span>}
+  },
+  {
+    <span class="attr">"id"</span>: <span class="number">65462</span>,
+    <span class="attr">"group"</span>: {<span class="attr">"href"</span>: <span class="string">"/groups/08632"</span>},
+    <span class="attr">"user"</span>: {<span class="attr">"href"</span>: <span class="string">"/users/453453"</span>}
+  },
+  …
+]</span>
+</code></pre>
+</section>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="content-wrap">
+        <div class="nav"><a href="/">&laquo; Index</a></div>
+        <section class="copy">
+          <p>&copy; 2016 Lokalizoo &mdash; powered by&nbsp;<a href="https://github.com/jnordberg/wintersmith">Wintersmith</a>
+          </p>
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>

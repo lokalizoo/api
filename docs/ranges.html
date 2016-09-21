@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Specifying ranges - Lokalizoo REST API
+    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Source+Code+Pro">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body class="article-detail">
+    <header class="header">
+      <div class="content-wrap">
+        <h1>Specifying ranges</h1>
+      </div>
+    </header>
+    <div id="content">
+      <div class="content-wrap">
+        <article class="article">
+          <section class="content"><p>Some collections support ordering and filtering results by a particular fields. There are several ways to specify a&nbsp;range:</p>
+<ul>
+<li>Via <strong>query parameter</strong> by appending <code>field=range</code> to the query&nbsp;string</li>
+<li>Via <strong>range header</strong> by specifying a <code>Range</code> <span class="caps">HTTP</span> header with a value <code>field=range</code></li>
+</ul>
+<p>The results will be sorted according to the following&nbsp;rules</p>
+<ul>
+<li><p>When <code>range</code> is <code>start..end</code> - sorted by <code>field</code> in <strong>ascending</strong> order, where value of <code>field</code> is equal or greater than <code>start</code> and less than <code>end</code></p>
+</li>
+<li><p>When <code>range</code> is <code>start..</code> - sorted by <code>field</code> in <strong>ascending</strong> order, where value of <code>field</code> is greater than <code>start</code></p>
+</li>
+<li><p>When <code>range</code> is <code>..end</code> - sorted by <code>field</code> in <strong>descending</strong> order, where value of <code>field</code> is less than <code>end</code></p>
+</li>
+<li><p>When <code>range</code> is <code>..</code> - sorted by <code>field</code> in <strong>ascending</strong>&nbsp;order</p>
+</li>
+</ul>
+<p>Remember that if the range is too big, not all items are guaranted to be returned. The <code>Content-Range</code> response header will reflect the actual returned&nbsp;range.</p>
+</section>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="content-wrap">
+        <div class="nav"><a href="/">&laquo; Index</a></div>
+        <section class="copy">
+          <p>&copy; 2016 Lokalizoo &mdash; powered by&nbsp;<a href="https://github.com/jnordberg/wintersmith">Wintersmith</a>
+          </p>
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>

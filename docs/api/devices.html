@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Devices - Lokalizoo REST API
+    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Source+Code+Pro">
+    <link rel="stylesheet" href="../css/main.css">
+  </head>
+  <body class="article-detail">
+    <header class="header">
+      <div class="content-wrap">
+        <h1>Devices</h1>
+      </div>
+    </header>
+    <div id="content">
+      <div class="content-wrap">
+        <article class="article">
+          <section class="content"><ul>
+<li><code>id</code> -&nbsp;<span class="caps">ID</span></li>
+<li><code>href</code> - Canonical&nbsp;<span class="caps">URL</span></li>
+<li><code>ownerships</code> - <a href="/links.html">Linked</a> collection of <a href="/api/ownerships.html">ownership</a> objects that represent the devices’s&nbsp;owners.</li>
+<li><code>fcmRegToken</code> <strong>(write only)</strong> - <a href="https://firebase.google.com/docs/cloud-messaging/concept-options#credentials"><span class="caps">FCM</span> registration token</a>.</li>
+</ul>
+<p><strong><span class="caps">TODO</span></strong> document remaining&nbsp;fields</p>
+<hr>
+<h1 id="get-devices-id-"><span class="caps">GET</span> <code>/devices/{id}</code></h1>
+<p>Returns device data. <code>{id}</code> can be device’s <span class="caps">ID</span> or IMEI&nbsp;number</p>
+<h4 id="scopes">Scopes</h4>
+<p>Requires <code>devices</code> scope to access data about resource owner’s&nbsp;devices.</p>
+<h4 id="example-response">Example&nbsp;response</h4>
+<pre><code class="lang-http">HTTP/1.1 <span class="number">200</span> <span class="caps">OK</span>
+<span class="attribute">Content-Type</span>: application/json; charset=utf-8
+
+<span class="json">{
+  <span class="attr">"id"</span>: <span class="string">"448"</span>,
+  <span class="attr">"href"</span>: <span class="string">"/devices/448"</span>,
+  <span class="attr">"ownerships"</span>: {<span class="attr">"href"</span>: <span class="string">"/ownerships?device=448"</span>},
+  <span class="attr">"routes"</span>: {<span class="attr">"href"</span>: <span class="string">"/devices/448/routes"</span>},
+  <span class="attr">"name"</span>: <span class="string">"<span class="caps">HTC</span> One M9"</span>,
+  <span class="attr">"lastPoint"</span>: {
+    <span class="attr">"date"</span>: <span class="string">"2016-09-20T19:00:41.000Z"</span>,
+    <span class="attr">"fuelLevel"</span>: <span class="number">0</span>,
+    <span class="attr">"heading"</span>: <span class="number">0</span>,
+    <span class="attr">"ignitionState"</span>: <span class="literal">false</span>,
+    <span class="attr">"location"</span>: {<span class="attr">"coordinates"</span>: [<span class="number">15.508</span>, <span class="number">51.930</span>, <span class="number">191</span>], <span class="attr">"type"</span>: <span class="string">"Point"</span>},
+    <span class="attr">"routeDistance"</span>: <span class="literal">null</span>,
+    <span class="attr">"speed"</span>: <span class="number">0</span>
+  }
+}</span>
+</code></pre>
+<h1 id="patch-devices-id-"><span class="caps">PATCH</span> <code>/devices/{id}</code></h1>
+<p>Update device data. <code>{id}</code> can be device’s <span class="caps">ID</span> or IMEI&nbsp;number.</p>
+<h4 id="scopes">Scopes</h4>
+<p>Requires <code>devices</code> scope to update resource owner’s&nbsp;devices.</p>
+<h4 id="example-request">Example&nbsp;request</h4>
+<pre><code class="lang-http"><span class="keyword"><span class="caps">PATCH</span></span> <span class="string">/devices/12345</span> <span class="caps">HTTP</span>/1.1
+<span class="attribute">Host</span>: api.lokalizoo.pl
+<span class="attribute">Authorization</span>: Bearer AccEss_t0kEn
+<span class="attribute">Content-Type</span>: application/json
+
+<span class="json">{
+  <span class="attr">"name"</span>: <span class="string">"<span class="caps">HTC</span> One M9"</span>,
+  <span class="attr">"fcmRegToken"</span>: <span class="string">"j84jc84jmc89"</span>
+}</span>
+</code></pre>
+</section>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="content-wrap">
+        <div class="nav"><a href="/">&laquo; Index</a></div>
+        <section class="copy">
+          <p>&copy; 2016 Lokalizoo &mdash; powered by&nbsp;<a href="https://github.com/jnordberg/wintersmith">Wintersmith</a>
+          </p>
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>

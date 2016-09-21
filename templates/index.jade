@@ -1,0 +1,12 @@
+
+extends layout
+
+block content
+  h2 General concepts
+  ul
+    li: a(href='auth.html') Authentication and authorization
+    li: a(href='ranges.html') Specifying collection ranges
+    li: a(href='subscribing.html') Subscribing to collection's changefeed
+  h2 API endpoints
+  ul: for page in env.helpers.getPages(contents, 'api')
+    li: a(href=page.url)= '/' + page.title

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Users - Lokalizoo REST API
+    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Source+Code+Pro">
+    <link rel="stylesheet" href="../css/main.css">
+  </head>
+  <body class="article-detail">
+    <header class="header">
+      <div class="content-wrap">
+        <h1>Users</h1>
+      </div>
+    </header>
+    <div id="content">
+      <div class="content-wrap">
+        <article class="article">
+          <section class="content"><ul>
+<li><code>id</code> -&nbsp;<span class="caps">ID</span></li>
+<li><code>href</code> - Canonical&nbsp;<span class="caps">URL</span></li>
+<li><code>memberships</code> - <a href="/links.html">Linked</a> collection of <a href="/api/memberships.html">membership</a> objects that represent groups the user belongs&nbsp;to</li>
+<li><code>ownerships</code> - <a href="/links.html">Linked</a> collection of <a href="/api/ownerships.html">Ownership</a> objects that represent the user’s&nbsp;devices.</li>
+<li><code>login</code> - User’s login. Usually an email&nbsp;address.</li>
+<li><code>avatar</code> - Object containing the <span class="caps">URL</span> of user’s profile picture in different formats<ul>
+<li><code>large</code> - Full size&nbsp;picture</li>
+<li><code>small</code> - 80x80&nbsp;icon</li>
+</ul>
+</li>
+<li><code>details</code> - Personal information and other&nbsp;details</li>
+</ul>
+<hr>
+<h1 id="get-users-id-"><span class="caps">GET</span> <code>/users/{id}</code></h1>
+<p>Returns user data. Special <span class="caps">ID</span> <code>me</code> can be used to request data about the resource&nbsp;owner.</p>
+<h4 id="scopes">Scopes</h4>
+<p>Requires <code>identify</code> scope to access data about resource owner. <code>friends</code> scope allows querying users that share a common&nbsp;group.</p>
+<h4 id="example-response">Example&nbsp;response</h4>
+<pre><code class="lang-http">HTTP/1.1 <span class="number">200</span> <span class="caps">OK</span>
+<span class="attribute">Content-Type</span>: application/json; charset=utf-8
+
+<span class="json">{
+  <span class="attr">"id"</span>: <span class="string">"90f78ab7"</span>,
+  <span class="attr">"href"</span>: <span class="string">"/users/90f78ab7"</span>,
+  <span class="attr">"memberships"</span>: {<span class="attr">"href"</span>: <span class="string">"/memberships?user=90f78ab7"</span>},
+  <span class="attr">"ownerships"</span>: {<span class="attr">"href"</span>: <span class="string">"/ownerships?user=90f78ab7"</span>},
+  <span class="attr">"login"</span>: <span class="string">"jan@kowalski.net"</span>,
+  <span class="attr">"avatar"</span>: {
+    <span class="attr">"large"</span>: <span class="string">"https://lokcdn.com/avatars/941ccada95030ba9.jpg"</span>,
+    <span class="attr">"small"</span>: <span class="string">"https://lokcdn.com/avatars/0f56c7eedc63366c.jpg"</span>
+  },
+  <span class="attr">"details"</span>: {
+    <span class="attr">"name"</span>: <span class="string">"Jan Kowalski"</span>,
+    <span class="attr">"address"</span>: <span class="string">"Strumykowa 12"</span>,
+    <span class="attr">"city"</span>: <span class="string">"Zielona Góra"</span>,
+    <span class="attr">"postCode"</span>: <span class="string">"12-345"</span>
+  }
+}</span>
+</code></pre>
+</section>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="content-wrap">
+        <div class="nav"><a href="/">&laquo; Index</a></div>
+        <section class="copy">
+          <p>&copy; 2016 Lokalizoo &mdash; powered by&nbsp;<a href="https://github.com/jnordberg/wintersmith">Wintersmith</a>
+          </p>
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>

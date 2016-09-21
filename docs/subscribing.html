@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Subscribing to collection changes - Lokalizoo REST API
+    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Source+Code+Pro">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body class="article-detail">
+    <header class="header">
+      <div class="content-wrap">
+        <h1>Subscribing to collection changes</h1>
+      </div>
+    </header>
+    <div id="content">
+      <div class="content-wrap">
+        <article class="article">
+          <section class="content"><p>There are two ways to subscribe to a collection’s&nbsp;changefeed:</p>
+<ul>
+<li>Server Sent&nbsp;Events</li>
+<li>Firebase Cloud&nbsp;Messaging</li>
+</ul>
+<hr>
+<h3 id="subscribing-via-server-sent-events">Subscribing via Server Sent&nbsp;Events</h3>
+<p>Simply pass the collection <span class="caps">URL</span> as the source of server sent&nbsp;events</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="comment">// Subscribe to chat messages</span>
+<span class="keyword">const</span> stream = <span class="keyword">new</span> EventSource(<span class="string">'https://api.lokalizoo.pl/groups/12345/messages'</span>)
+stream.on(<span class="string">'create'</span>, ev =&gt; {<span class="comment">/* ev.data is the msg that was posted */</span>})
+stream.on(<span class="string">'update'</span>, ev =&gt; {<span class="comment">/* ev.data is the msg after it was edited */</span>})
+stream.on(<span class="string">'delete'</span>, ev =&gt; {<span class="comment">/* ev.data.id is the id of the msg that was deleted */</span>})
+</code></pre>
+<h3 id="subscribing-via-firebase-cloud-messaging">Subscribing via Firebase Cloud&nbsp;Messaging</h3>
+<ul>
+<li><code>type</code> - must be <code>fcm</code></li>
+<li><code>token</code> - device’s <span class="caps">FCM</span> registration&nbsp;token</li>
+<li><code>event</code> - which type of event are you interested in (<code>create</code> / <code>update</code> / <code>delete</code>)</li>
+<li><code>notification</code> - <a href="https://firebase.google.com/docs/cloud-messaging/concept-options#notifications"><span class="caps">FCM</span> notification parameters</a>.</li>
+</ul>
+<h4 id="example-request">Example&nbsp;request</h4>
+<pre><code class="lang-http"><span class="keyword"><span class="caps">POST</span></span> <span class="string">/groups/12345/messages/subscribe</span> <span class="caps">HTTP</span>/1.1
+<span class="attribute">Host</span>: api.lokalizoo.pl
+<span class="attribute">Authorization</span>: Bearer AccEss_t0kEn
+<span class="attribute">Content-Type</span>: application/json
+
+<span class="json">{
+  <span class="attr">"type"</span>: <span class="string">"fcm"</span>,
+  <span class="attr">"token"</span>: <span class="string">"FrH7F56Fv"</span>,
+  <span class="attr">"event"</span>: <span class="string">"create"</span>,
+  <span class="attr">"notification"</span>: {
+    <span class="attr">"title"</span>: <span class="string">"New message by {author}"</span>,
+    <span class="attr">"body"</span>: <span class="string">"{content}"</span>,
+    <span class="attr">"icon"</span>: <span class="string">"message"</span>
+  }
+}</span>
+</code></pre>
+</section>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="content-wrap">
+        <div class="nav"><a href="/">&laquo; Index</a></div>
+        <section class="copy">
+          <p>&copy; 2016 Lokalizoo &mdash; powered by&nbsp;<a href="https://github.com/jnordberg/wintersmith">Wintersmith</a>
+          </p>
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>
